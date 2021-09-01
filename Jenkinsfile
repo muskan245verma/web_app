@@ -19,11 +19,18 @@ pipeline {
                 echo "Tested Successfully"
             }
         }
-        stage('Output'){
+        stage('Building Docker Image'){
             steps{
-                bat 'python flask_test.py'
-                echo "Successfully"
+                bat 'docker image build -t web_app .'
+                echo "Image Built Successfully"
             }
+        }
+
+        stage('Running Docker Image'){
+              steps{
+                   bat 'docker run -p 5000:5000 -d web_app'
+                   echo "Image Running"
+              }
         }
     }
 }
