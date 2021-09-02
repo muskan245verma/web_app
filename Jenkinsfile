@@ -26,6 +26,13 @@ pipeline {
                 echo "-------------------Image Built Successfully------------------"
             }
         }
+        stage('Running Docker Image'){
+              steps{
+                   echo "Image Getting Ready to run"
+                   bat 'docker run -p 5000:5000 -d calculator_flask'
+                   echo "------------Image Running---------------"
+              }
+        }
         stage('Stop previous containers') {
             steps {
                  powershell 'docker stop $(docker ps -a -q)'
@@ -41,12 +48,5 @@ pipeline {
                          echo "Untagged Images Removed"
                             }
                      }
-        stage('Running Docker Image'){
-              steps{
-                   echo "Image Getting Ready to run"
-                   bat 'docker run -p 5000:5000 -d calculator_flask'
-                   echo "------------Image Running---------------"
-              }
-        }
     }
 }
