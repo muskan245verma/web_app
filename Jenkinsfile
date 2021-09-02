@@ -33,6 +33,14 @@ pipeline {
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
+        stage('Removing Untagged Images') {
+                     steps {
+                         echo "Removing Untagged Images"
+                         powershell 'docker images -f "dangling=true"'
+                         powershell 'docker rmi $(docker images -f "dangling=true" -q) --force'
+                         echo "Untagged Images Removed"
+                            }
+                     }
         stage('Running Docker Image'){
               steps{
                    echo "Image Getting Ready to run"
