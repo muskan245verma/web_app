@@ -29,7 +29,7 @@ pipeline {
         stage('Running Docker Image'){
               steps{
                    echo "Image Getting Ready to run"
-                   bat 'docker run -p 5000:5000 -d calculator_flask'
+                   bat 'docker run -p 5000:5000 -d web_app'
                    echo "------------Image Running---------------"
               }
         }
