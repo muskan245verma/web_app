@@ -29,7 +29,7 @@ pipeline {
         stage('Stop previous containers') {
             steps {
                  echo "Running"
-                 bat 'docker stop Web_app
+                 bat 'docker stop Web_app'
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
