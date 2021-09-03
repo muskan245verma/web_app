@@ -35,8 +35,8 @@ pipeline {
         }
         stage('Stop previous containers') {
             steps {
-                 powershell 'docker stop $(docker ps -a -q)'
-                 powershell 'docker rm $(docker ps -q -f status=exited)'
+                 echo "Running"
+                 powershell '$(docker ps -a -q)'
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
