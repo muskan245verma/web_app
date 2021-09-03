@@ -29,14 +29,14 @@ pipeline {
         stage('Stop previous containers') {
             steps {
                  echo "Running"
-                 bat 'docker stop Web_app'
+                 bat 'docker stop Web_app
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
         stage('Running Docker Image'){
               steps{
                    echo "Image Getting Ready to run"
-                   bat 'docker run -p 5000:5000 -d web_app'
+                   bat 'docker run -p 5000:5000 --name Web_app -d web_app'
                    echo "------------Image Running---------------"
               }
         }
