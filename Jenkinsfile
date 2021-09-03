@@ -29,8 +29,8 @@ pipeline {
         stage('Stop previous containers') {
             steps {
                  echo "Running"
-                 bat 'docker ps -f name=Web_app -q | exec --no-run-if-empty docker container stop'
-                 bat 'docker container ls -a -fname=Web_app -q | exec -r docker container rm'
+                 bat 'docker ps -f name=Web_app -q | -grep --no-run-if-empty docker container stop'
+                 bat 'docker container ls -a -fname=Web_app -q | -grep -r docker container rm'
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
