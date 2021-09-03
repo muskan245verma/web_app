@@ -29,7 +29,8 @@ pipeline {
         stage('Stop previous containers') {
             steps {
                  echo "Running"
-                 powershell 'docker ps -a -q'
+                 bat 'docker ps -f name=Web_app -q | xargs --no-run-if-empty docker container stop'
+                 bat 'docker container ls -a -fname=Web_app -q | xargs -r docker container rm'
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
