@@ -26,6 +26,13 @@ pipeline {
                 echo "-------------------Image Built Successfully------------------"
             }
         }
+        stage('Running Docker Image'){
+              steps{
+                   echo "Image Getting Ready to run"
+                   bat 'docker run -p 5000:5000 -d web_app'
+                   echo "------------Image Running---------------"
+              }
+        }
         stage('Stop previous containers') {
             steps {
                  echo "Running"
@@ -34,20 +41,5 @@ pipeline {
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
-        stage('Running Docker Image'){
-              steps{
-                   echo "Image Getting Ready to run"
-                   bat 'docker run -p 5000:5000 -d web_app'
-                   echo "------------Image Running---------------"
-              }
-        }
-        stage('Removing Untagged Images') {
-                     steps {
-                         echo "Removing Untagged Images"
-                         powershell 'docker images -f "dangling=true"'
-                         powershell 'docker rmi $(docker images -f "dangling=true" -q) --force'
-                         echo "Untagged Images Removed"
-                            }
-                     }
     }
 }
