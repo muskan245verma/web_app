@@ -36,7 +36,7 @@ pipeline {
         stage('Stop previous containers') {
             steps {
                  echo "Running"
-                 powershell '$(docker ps -a -q)'
+                 bat '$(docker ps -a -q)'
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
