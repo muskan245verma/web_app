@@ -26,6 +26,13 @@ pipeline {
                 echo "-------------------Image Built Successfully------------------"
             }
         }
+        stage('Stop previous containers') {
+            steps {
+                 echo "Running"
+                 powershell '$docker ps -a -q'
+                 echo "---------------Previous Containers Stopped-------------------"
+                   }
+             }
         stage('Running Docker Image'){
               steps{
                    echo "Image Getting Ready to run"
@@ -33,13 +40,6 @@ pipeline {
                    echo "------------Image Running---------------"
               }
         }
-        stage('Stop previous containers') {
-            steps {
-                 echo "Running"
-                 bat '$(docker ps -a -q)'
-                 echo "---------------Previous Containers Stopped-------------------"
-                   }
-             }
         stage('Removing Untagged Images') {
                      steps {
                          echo "Removing Untagged Images"
