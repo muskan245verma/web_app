@@ -30,6 +30,7 @@ pipeline {
             steps {
                  echo "Running"
                  bat 'docker stop Web_app'
+                 bat 'docker rm Web_app'
                  echo "---------------Previous Containers Stopped-------------------"
                    }
              }
